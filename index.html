@@ -82,29 +82,34 @@
 
     <!-- 💍 WEDDING -->
     <div class="col-md-6">
-      <div class="venue-box">
-        <h4>💍 Wedding Ceremony</h4>
-        <p>Join us for the sacred wedding rituals</p>
+      <div class="venue-card wedding">
+        <div class="overlay">
+          <h4>💍 Wedding Ceremony</h4>
+          <p>Join us for the sacred rituals</p>
 
-        <a href="https://www.google.com/maps/place/Seetharamayya+Kalyana+Mantapa/@13.2614379,76.4677003,17z/data=!3m1!4b1!4m6!3m5!1s0x3bb000b0673de059:0x1d539723148a1547!8m2!3d13.2614379!4d76.4702752!16s%2Fg%2F11bxdb2q0w?entry=ttu&g_ep=EgoyMDI2MDMxOC4xIKXMDSoASAFQAw%3D%3D"
-           target="_blank"
-           class="btn btn-gold mt-2">
-           View Location
-        </a>
+          <a href="https://www.google.com/maps/place/Seetharamayya+Kalyana+Mantapa/@13.2614379,76.4677003,17z/data=!3m1!4b1!4m6!3m5!1s0x3bb000b0673de059:0x1d539723148a1547!8m2!3d13.2614379!4d76.4702752!16s%2Fg%2F11bxdb2q0w?entry=ttu&g_ep=EgoyMDI2MDMxOC4xIKXMDSoASAFQAw%3D%3D
+"
+             target="_blank"
+             class="btn btn-gold">
+             View Location
+          </a>
+        </div>
       </div>
     </div>
 
     <!-- 🍽️ FEAST -->
     <div class="col-md-6">
-      <div class="venue-box">
-        <h4>🍽️ Wedding Feast (Bheegara Oota)</h4>
-        <p>Lunch will be served after the ceremony</p>
+      <div class="venue-card feast">
+        <div class="overlay">
+          <h4>🍽️ Wedding Feast (Bheegara Oota)</h4>
+          <p>Lunch will be served after the ceremony</p>
 
-        <a href="https://www.google.com/maps/place/Shree+Theertha+Rameshwara+Temple+Entrance+%7C%7C+Theertharampura+Punyakshetra/@14.1830391,75.4878035,17z/data=!3m1!4b1!4m6!3m5!1s0x3bbbb96c13b06d7b:0x6269b440ba1998d!8m2!3d14.1830391!4d75.4903784!16s%2Fg%2F11td9jcztt?entry=ttu&g_ep=EgoyMDI2MDMxOC4xIKXMDSoASAFQAw%3D%3D"
-           target="_blank"
-           class="btn btn-gold mt-2">
-           View Location
-        </a>
+          <a href="https://www.google.com/maps/place/Shree+Theertha+Rameshwara+Temple+Entrance+%7C%7C+Theertharampura+Punyakshetra/@14.1830391,75.4878035,17z/data=!3m1!4b1!4m6!3m5!1s0x3bbbb96c13b06d7b:0x6269b440ba1998d!8m2!3d14.1830391!4d75.4903784!16s%2Fg%2F11td9jcztt?entry=ttu&g_ep=EgoyMDI2MDMxOC4xIKXMDSoASAFQAw%3D%3D"
+             target="_blank"
+             class="btn btn-gold">
+             View Location
+          </a>
+        </div>
       </div>
     </div>
 
@@ -139,7 +144,10 @@
   
 </a> -->
 
+
 </div>
+
+
 
 <script src="script.js"></script>
 </body>
@@ -238,23 +246,58 @@ h1, h2, h3 {
 }
 
 /* LOCATION BUTTON GROUP */
-.location-buttons {
+/* VENUE CARD */
+.venue-card {
+  height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
   display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
 }
 
-.venue-box {
-  background: rgba(255,255,255,0.05);
-  padding: 25px;
-  border-radius: 15px;
-  backdrop-filter: blur(10px);
+/* BACKGROUND IMAGES */
+.venue-card.wedding {
+  background: url(photos/wedding.jpg) center/cover no-repeat;
+}
+
+.venue-card.feast {
+  background: url(photos/reception.jpg) center/cover no-repeat;
+}
+
+/* DARK OVERLAY */
+.overlay {
+  background: rgba(0,0,0,0.6);
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  border-radius: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* TEXT */
+.overlay h4 {
+  color: gold;
+text-shadow: #0b0b0b;
+  margin-bottom: 10px;
+}
+
+/* HOVER EFFECT */
+.venue-card:hover {
+  transform: scale(1.03);
   transition: 0.3s;
 }
 
-.venue-box:hover {
-  transform: translateY(-5px);
+/* MOBILE */
+@media (max-width: 768px) {
+  .venue-card {
+    height: 220px;
+  }
 }
 
 /* WHATSAPP BUTTON */
