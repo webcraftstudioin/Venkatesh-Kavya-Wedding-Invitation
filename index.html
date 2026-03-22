@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Wedding Invitation</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Poppins&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- 🎵 MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="song.mp3">
+</audio>
+
+<!-- 👤 ENTRY SCREEN -->
+<section id="entry" class="entry-screen text-center">
+  <div>
+    <h2>Welcome to Venkatesh & Kavya’s Wedding 💌</h2>
+    <input type="text" id="guestName" placeholder="Enter Your Name" class="form-control w-75 mx-auto my-3">
+    <button class="btn btn-gold" onclick="enterInvitation()">View Invitation</button>
+  </div>
+</section>
+
+<!-- 💎 MAIN INVITATION -->
+<div id="invitation" style="display:none;">
+
+  <!-- HERO -->
+  <section class="hero text-center text-white d-flex align-items-center">
+    <div class="container">
+      <h1 id="welcomeText"></h1>
+      <h2 class="couple">Venkatesh & Kavya</h2>
+      <p>Are Getting Married</p>
+      <h4>May 14, 2026</h4>
+    </div>
+  </section>
+
+
+   <!-- ⏳ COUNTDOWN -->
+  <section class="text-center my-5">
+    <h2>Wedding Countdown</h2>
+
+    <div id="timer" class="d-flex justify-content-center gap-3 mt-3"></div>
+  </section>
+
+  <!-- 📸 GALLERY -->
+  <section class="container text-center my-5" id="gallerySection">
+    <h2>Engagement Gallery</h2>
+
+    <div class="row g-3 mt-4">
+      <div class="col-md-4 mb-3">
+        <img src="photos/photo4.jpeg" class="gallery">
+      </div>
+      <div class="col-md-4 mb-3">
+        <img src="photos/photo1.jpeg" class="gallery">
+      </div>
+      <div class="col-md-4 mb-3">
+        <img src="photos/photo3.jpeg" class="gallery">
+      </div>
+    </div>
+  </section>
+
+  <!-- IMAGE MODAL -->
+<div id="imgModal" class="modal" style="display:none;">
+  <span onclick="closeModal()" style="position:absolute;top:20px;right:30px;font-size:30px;cursor:pointer;">×</span>
+  <img id="modalImg" style="width:80%;display:block;margin:auto;margin-top:50px;">
+</div>
+
+
+<!-- 📍 LOCATION -->
+ <section class="container text-center my-5">
+
+  <h2 class="mb-4">Venue Details</h2>
+
+  <div class="row g-4">
+
+    <!-- 💍 WEDDING -->
+    <div class="col-md-6">
+      <div class="venue-box">
+        <h4>💍 Wedding Ceremony</h4>
+        <p>Join us for the sacred wedding rituals</p>
+
+        <a href="https://www.google.com/maps/place/Seetharamayya+Kalyana+Mantapa/@13.2614379,76.4677003,17z/data=!3m1!4b1!4m6!3m5!1s0x3bb000b0673de059:0x1d539723148a1547!8m2!3d13.2614379!4d76.4702752!16s%2Fg%2F11bxdb2q0w?entry=ttu&g_ep=EgoyMDI2MDMxOC4xIKXMDSoASAFQAw%3D%3D"
+           target="_blank"
+           class="btn btn-gold mt-2">
+           View Location
+        </a>
+      </div>
+    </div>
+
+    <!-- 🍽️ FEAST -->
+    <div class="col-md-6">
+      <div class="venue-box">
+        <h4>🍽️ Wedding Feast (Bheegara Oota)</h4>
+        <p>Lunch will be served after the ceremony</p>
+
+        <a href="https://www.google.com/maps/place/Shree+Theertha+Rameshwara+Temple+Entrance+%7C%7C+Theertharampura+Punyakshetra/@14.1830391,75.4878035,17z/data=!3m1!4b1!4m6!3m5!1s0x3bbbb96c13b06d7b:0x6269b440ba1998d!8m2!3d14.1830391!4d75.4903784!16s%2Fg%2F11td9jcztt?entry=ttu&g_ep=EgoyMDI2MDMxOC4xIKXMDSoASAFQAw%3D%3D"
+           target="_blank"
+           class="btn btn-gold mt-2">
+           View Location
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- <...Sending Wishes....> -->
+<div class="text-center my-4">
+  <h4>Send your wishes to the couple 💖</h4>
+
+  <div class="d-flex justify-content-center gap-3 flex-wrap mt-3">
+
+    <!-- Groom -->
+    <button onclick="sendWishGroom()" class="btn btn-gold">
+      <b>Wish Venkatesh</b>
+    </button>
+
+    <!-- Bride -->
+    <button onclick="sendWishBride()" class="btn btn-gold">
+      <b>Wish Kavya</b>
+    </button>
+
+  </div>
+</div>
+
+
+<!-- Whatsapp -->
+ <!-- <a href="#" onclick="sendWish()" class="whatsapp-btn">
+    <img src="whatsapp.svg" width="40px">
+  
+</a> -->
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
+
+<style>
+
+/* RESET */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: #0b0b0b;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* CONTAINER WIDTH CONTROL */
+.container {
+  max-width: 1100px;
+}
+
+/* ENTRY SCREEN */
+.entry-screen {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)),
+  url('https://images.unsplash.com/photo-1519741497674-611481863552') center/cover no-repeat;
+}
+
+/* TYPOGRAPHY */
+.couple {
+  font-family: 'Cinzel', serif;
+  color: gold;
+  font-size: 3rem;
+  letter-spacing: 2px;
+}
+
+h1, h2, h3 {
+  margin-bottom: 10px;
+}
+
+/* GALLERY */
+.gallery {
+  width: 100%;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.gallery:hover {
+  transform: scale(1.05);
+}
+
+/* COUNTDOWN */
+#timer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+#timer div {
+  background: rgba(255,255,255,0.1);
+  padding: 15px;
+  border-radius: 12px;
+  min-width: 80px;
+  text-align: center;
+}
+
+/* BUTTON */
+.btn-gold {
+  background: linear-gradient(45deg, gold, #d4af37);
+  color: black;
+  border-radius: 30px;
+  padding: 12px 25px;
+  border: none;
+  display: inline-block;
+}
+
+/* LOCATION BUTTON GROUP */
+.location-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.venue-box {
+  background: rgba(255,255,255,0.05);
+  padding: 25px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
+}
+
+.venue-box:hover {
+  transform: translateY(-5px);
+}
+
+/* WHATSAPP BUTTON */
+.whatsapp-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  padding: 12px;
+  border-radius: 50%;
+  font-size: 20px;
+}
+
+/* 📱 MOBILE (≤576px) */
+@media (max-width: 576px) {
+
+  .couple {
+    font-size: 2rem;
+  }
+
+  .hero {
+    padding: 20px;
+  }
+
+  /* 2 COLUMN GALLERY */
+  .row .col-md-4 {
+    width: 50%;
+  }
+
+  #timer div {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .btn-gold {
+    width: 100%;
+    max-width: 250px;
+  }
+}
+
+/* 📲 TABLET (577px – 992px) */
+@media (min-width: 577px) and (max-width: 992px) {
+
+  .couple {
+    font-size: 2.5rem;
+  }
+
+  /* 2 columns */
+  .row .col-md-4 {
+    width: 50%;
+  }
+}
+
+/* 💻 LAPTOP & DESKTOP (≥993px) */
+@media (min-width: 993px) {
+
+  .couple {
+    font-size: 3.5rem;
+  }
+
+  /* 3 columns */
+  .row .col-md-4 {
+    width: 33.33%;
+  }
+}
+
+
+</style>
+
+
+
+<script>
+
+const music = document.getElementById("bgMusic");
+
+// ENTER
+function enterInvitation() {
+  const name = document.getElementById("guestName").value;
+
+  if (name === "") {
+    alert("Please enter your name");
+    return;
+  }
+
+  document.getElementById("entry").style.display = "none";
+  document.getElementById("invitation").style.display = "block";
+
+  document.getElementById("welcomeText").innerText =
+    "Welcome " + name + " 💖";
+
+  music.play();
+}
+
+// STOP MUSIC ON GALLERY VIEW
+window.addEventListener("scroll", () => {
+  const gallery = document.getElementById("gallerySection");
+  const rect = gallery.getBoundingClientRect();
+
+  if (rect.top < window.innerHeight && rect.bottom >= 0) {
+    music.pause();
+  }
+});
+
+// IMAGE MODAL
+const images = document.querySelectorAll(".gallery");
+const modal = document.getElementById("imgModal");
+const modalImg = document.getElementById("modalImg");
+
+images.forEach(img => {
+  img.addEventListener("click", () => {
+    modal.style.display = "block";
+    modalImg.src = img.src;
+  });
+});
+
+function closeModal() {
+  modal.style.display = "none";
+}
+
+function sendWishGroom() {
+  const name = document.getElementById("guestName").value || "Guest";
+
+  const msg = `Hi Venkatesh ❤️,
+Congratulations on your wedding! 🎉
+Wishing you both a beautiful life ahead 💖
+
+
+- ${name}`;
+
+  window.open(`https://wa.me/919148936124?text=${encodeURIComponent(msg)}`);
+}
+
+function sendWishBride() {
+  const name = document.getElementById("guestName").value || "Guest";
+
+  const msg = `Hi Kavya ❤️,
+Congratulations on your upcoming wedding! 🎉
+Wishing you happiness and love 💖
+
+- ${name}`;
+
+  window.open(`https://wa.me/91YYYYYYYYYY?text=${encodeURIComponent(msg)}`);
+}
+
+// COUNTDOWN
+const weddingDate = new Date("May 14, 2026 10:45:00").getTime();
+
+setInterval(() => {
+  const now = new Date().getTime();
+  const gap = weddingDate - now;
+
+  const d = Math.floor(gap / (1000 * 60 * 60 * 24));
+  const h = Math.floor((gap / (1000 * 60 * 60)) % 24);
+  const m = Math.floor((gap / (1000 * 60)) % 60);
+  const s = Math.floor((gap / 1000) % 60);
+
+  document.getElementById("timer").innerHTML =
+    `<div>${d}<br>Days</div>
+     <div>${h}<br>Hrs</div>
+     <div>${m}<br>Min</div>
+     <div>${s}<br>Sec</div>`;
+}, 1000);
+
+
+function sendWish() {
+  const name = document.getElementById("guestName").value || "Guest";
+
+  const message = `Congratulations Venkatesh & Kavya on your wedding! 🎉
+Wishing you both a beautiful life ahead 💖
+
+- ${name}`;
+
+  const url = `https://wa.me/919148936124?text=${encodeURIComponent(message)}`;
+
+  window.open(url, "_blank");
+}
+
+
+</script>
