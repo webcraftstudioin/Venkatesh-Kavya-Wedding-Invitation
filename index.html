@@ -21,11 +21,18 @@
 
 <!-- 👤 ENTRY SCREEN -->
 <section id="entry" class="entry-screen text-center">
-  <div>
-    <h2>Welcome to Venkatesh & Kavya’s Wedding 💌</h2>
-    <input type="text" id="guestName" placeholder="Enter Your Name" class="form-control w-75 mx-auto my-3">
-    <button class="btn btn-gold" onclick="enterInvitation()">View Invitation</button>
+
+  <div class="entry-box">
+    <h1 class="invite-title">Venkatesh & Kavya</h1>
+    <p class="invite-sub">Wedding Invitation</p>
+
+    <input type="text" id="guestName" placeholder="Enter Your Name" class="form-control my-3">
+
+    <button class="open-btn" onclick="enterInvitation()">
+      💌 Open Invitation
+    </button>
   </div>
+
 </section>
 
 <!-- 💎 MAIN INVITATION -->
@@ -119,19 +126,17 @@
 
 
 <!-- <...Sending Wishes....> -->
-<div class="text-center my-4">
-  <h4>Send your wishes to the couple 💖</h4>
+<div class="text-center my-5">
+  <h4 class="mb-4">Send your wishes 💖</h4>
 
-  <div class="d-flex justify-content-center gap-3 flex-wrap mt-3">
+  <div class="wish-buttons">
 
-    <!-- Groom -->
-    <button onclick="sendWishGroom()" class="btn btn-gold">
-      <b>Wish Venkatesh</b>
+    <button onclick="sendWishGroom()" class="btn modern-btn">
+      💙 Wish Venkatesh
     </button>
 
-    <!-- Bride -->
-    <button onclick="sendWishBride()" class="btn btn-gold">
-      <b>Wish Kavya</b>
+    <button onclick="sendWishBride()" class="btn modern-btn">
+      💖 Wish Kavya
     </button>
 
   </div>
@@ -156,6 +161,21 @@
 
 <style>
 
+
+.open-btn {
+  animation: glowPulse 2s infinite;
+}
+
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 5px gold; }
+  50% { box-shadow: 0 0 20px gold; }
+  100% { box-shadow: 0 0 5px gold; }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 /* RESET */
 * {
   box-sizing: border-box;
@@ -175,13 +195,65 @@ body {
 }
 
 /* ENTRY SCREEN */
+/* ENTRY BACKGROUND */
 .entry-screen {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  background: radial-gradient(circle at center, #1a1a1a, #000);
+}
+
+/* CENTER BOX */
+.entry-box {
   text-align: center;
-  padding: 20px;
+  animation: fadeIn 1.5s ease;
+}
+
+/* TITLE */
+.invite-title {
+  font-family: 'Cinzel', serif;
+  color: gold;
+  font-size: 2.5rem;
+  letter-spacing: 3px;
+}
+
+/* SUBTITLE */
+.invite-sub {
+  opacity: 0.7;
+  margin-bottom: 20px;
+}
+
+/* BUTTON */
+.open-btn {
+  background: transparent;
+  border: 2px solid gold;
+  color: gold;
+  padding: 12px 30px;
+  border-radius: 40px;
+  font-size: 16px;
+  transition: 0.4s;
+}
+
+/* BUTTON HOVER */
+.open-btn:hover {
+  background: gold;
+  color: black;
+  box-shadow: 0 0 20px gold;
+  transform: scale(1.05);
+}
+
+/* FADE ANIMATION */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* HERO */
@@ -200,8 +272,9 @@ body {
 .couple {
   font-family: 'Cinzel', serif;
   color: gold;
-  font-size: 3rem;
-  letter-spacing: 2px;
+  font-size: 3.5rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 
 h1, h2, h3 {
@@ -243,6 +316,36 @@ h1, h2, h3 {
   padding: 12px 25px;
   border: none;
   display: inline-block;
+}
+
+.wish-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* ✅ spacing fixed */
+  flex-wrap: wrap;
+}
+
+.modern-btn {
+  background: rgba(255,255,255,0.08);
+  color: white;
+  border-radius: 50px;
+  padding: 12px 25px;
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
+  min-width: 180px;
+}
+
+section {
+  margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+/* HOVER EFFECT */
+.modern-btn:hover {
+  background: gold;
+  color: black;
+  transform: translateY(-3px);
 }
 
 /* LOCATION BUTTON GROUP */
@@ -310,6 +413,18 @@ text-shadow: #0b0b0b;
   border-radius: 50%;
   font-size: 20px;
 }
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.6s ease;
+}
+
+.fade-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 /* 📱 MOBILE (≤576px) */
 @media (max-width: 576px) {
@@ -382,13 +497,24 @@ function enterInvitation() {
     return;
   }
 
-  document.getElementById("entry").style.display = "none";
-  document.getElementById("invitation").style.display = "block";
+  const entry = document.getElementById("entry");
+  const invite = document.getElementById("invitation");
 
-  document.getElementById("welcomeText").innerText =
-    "Welcome " + name + " 💖";
+  // fade out entry
+  entry.style.transition = "opacity 1s";
+  entry.style.opacity = "0";
 
-  music.play();
+  setTimeout(() => {
+    entry.style.display = "none";
+    invite.style.display = "block";
+
+    document.getElementById("welcomeText").innerText =
+      "Welcome " + name + " 💖";
+
+    // 🎵 play music after open
+    document.getElementById("bgMusic").play();
+
+  }, 1000);
 }
 
 // STOP MUSIC ON GALLERY VIEW
@@ -474,6 +600,19 @@ Wishing you both a beautiful life ahead 💖
 
   window.open(url, "_blank");
 }
+
+
+const faders = document.querySelectorAll(".container, section");
+
+window.addEventListener("scroll", () => {
+  faders.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+
+    if (top < window.innerHeight - 100) {
+      el.classList.add("show");
+    }
+  });
+});
 
 
 </script>
