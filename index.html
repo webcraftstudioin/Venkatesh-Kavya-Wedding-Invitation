@@ -712,12 +712,52 @@ body {
   object-fit: contain;
 }
 
+/* 🔥 MOBILE SHAKE FIX */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Prevent layout breaking */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Smooth horizontal scroll */
+.pre-gallery {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Responsive pre-wedding images */
+.pre-img {
+  flex: 0 0 auto;
+  width: 70%;
+  max-width: 250px;
+  height: auto;
+}
+
+/* Fix modal stability */
+.modal {
+  overflow: hidden;
+}
+
+/* Prevent scroll jump when modal opens */
+body.modal-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
 
 </style>
 
 
 
 <script>
+
+
 
 const music = document.getElementById("bgMusic");
 
@@ -733,7 +773,6 @@ function enterInvitation() {
   const entry = document.getElementById("entry");
   const invite = document.getElementById("invitation");
 
-  // fade out entry
   entry.style.transition = "opacity 1s";
   entry.style.opacity = "0";
 
@@ -744,37 +783,82 @@ function enterInvitation() {
     document.getElementById("welcomeText").innerText =
       "Welcome " + name + " 💖";
 
-    // 🎵 play music after open
-    document.getElementById("bgMusic").play();
-
+    music.play();
   }, 1000);
 }
 
 // STOP MUSIC ON GALLERY VIEW
 window.addEventListener("scroll", () => {
   const gallery = document.getElementById("gallerySection");
-  const rect = gallery.getBoundingClientRect();
+  if (!gallery) return;
 
+  const rect = gallery.getBoundingClientRect();
   if (rect.top < window.innerHeight && rect.bottom >= 0) {
     music.pause();
   }
 });
 
-// IMAGE MODAL
+// ==========================
+// 🔥 MODAL FIX SYSTEM
+// ==========================
+
 const images = document.querySelectorAll(".gallery");
 const modal = document.getElementById("imgModal");
 const modalImg = document.getElementById("modalImg");
 
+const preImages = document.querySelectorAll(".pre-img");
+const preModal = document.getElementById("preModal");
+const preModalImg = document.getElementById("preModalImg");
+
+// LOCK BODY (NO SHAKE)
+function lockBody() {
+  document.body.dataset.scrollY = window.scrollY;
+  document.body.style.position = "fixed";
+  document.body.style.top = `-${window.scrollY}px`;
+  document.body.style.width = "100%";
+}
+
+// UNLOCK BODY (RESTORE POSITION)
+function unlockBody() {
+  const scrollY = document.body.dataset.scrollY;
+  document.body.style.position = "";
+  document.body.style.top = "";
+  window.scrollTo(0, scrollY || 0);
+}
+
+// NORMAL GALLERY OPEN
 images.forEach(img => {
   img.addEventListener("click", () => {
-    modal.style.display = "block";
+    modal.style.display = "flex";
     modalImg.src = img.src;
+    lockBody();
   });
 });
 
+// PRE-WEDDING OPEN
+preImages.forEach(img => {
+  img.addEventListener("click", () => {
+    preModal.style.display = "flex";
+    preModalImg.src = img.src;
+    lockBody();
+  });
+});
+
+// CLOSE NORMAL MODAL
 function closeModal() {
   modal.style.display = "none";
+  unlockBody();
 }
+
+// CLOSE PRE MODAL
+function closePreModal() {
+  preModal.style.display = "none";
+  unlockBody();
+}
+
+// ==========================
+// OTHER FUNCTIONS (UNCHANGED)
+// ==========================
 
 function sendWishGroom() {
   const name = document.getElementById("guestName").value || "Guest";
@@ -782,7 +866,6 @@ function sendWishGroom() {
   const msg = `Hi Venkatesh ❤️,
 Congratulations on your wedding! 🎉
 Wishing you both a beautiful life ahead 💖
-
 
 - ${name}`;
 
@@ -820,65 +903,18 @@ setInterval(() => {
      <div>${s}<br>Sec</div>`;
 }, 1000);
 
-
-function sendWish() {
-  const name = document.getElementById("guestName").value || "Guest";
-
-  const message = `Congratulations Venkatesh & Kavya on your wedding! 🎉
-Wishing you both a beautiful life ahead 💖
-
-- ${name}`;
-
-  const url = `https://wa.me/919148936124?text=${encodeURIComponent(message)}`;
-
-  window.open(url, "_blank");
-}
-
-
+// SCROLL ANIMATION
 const faders = document.querySelectorAll(".container, section");
 
 window.addEventListener("scroll", () => {
   faders.forEach(el => {
     const top = el.getBoundingClientRect().top;
-
     if (top < window.innerHeight - 100) {
       el.classList.add("show");
     }
   });
 });
 
-const preImages = document.querySelectorAll(".pre-img");
-const preModal = document.getElementById("preModal");
-const preModalImg = document.getElementById("preModalImg");
-
-preImages.forEach(img => {
-  img.addEventListener("click", () => {
-    preModal.style.display = "block";
-    preModalImg.src = img.src;
-  });
-});
-
-function closePreModal() {
-  preModal.style.display = "none";
-}
-
-function openModal(src) {
-  modal.style.display = "flex";
-  modalImg.src = src;
-
-  document.body.style.overflow = "hidden"; // 🚫 stop scroll
-}
-
-function closeModal() {
-  modal.style.display = "none";
-  document.body.style.overflow = "auto"; // ✅ restore scroll
-}
-
-images.forEach(img => {
-  img.addEventListener("click", () => {
-    openModal(img.src);
-  });
-});
 
 
 </script>
