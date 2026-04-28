@@ -75,84 +75,108 @@
 
   <!-- IMAGE MODAL -->
 <div id="imgModal" class="modal" style="display:none;">
-  <span onclick="closeModal()" style="position:absolute;top:20px;right:30px;font-size:30px;cursor:pointer;">×</span>
+<span onclick="closeModal()" class="close-btn">×</span>
   <img id="modalImg" style="width:80%;display:block;margin:auto;margin-top:50px;">
 </div>
 
 
-<!-- 📍 LOCATION -->
+<!-- 💑 PRE-WEDDING GALLERY -->
+<section class="container text-center my-5">
+  <h2>Pre-Wedding Moments</h2>
+
+  <div class="pre-gallery mt-4">
+
+    <img src="photos/venki101.jpeg" class="pre-img">
+    <img src="photos/venki102.jpeg" class="pre-img">
+    <img src="photos/venki103.jpeg" class="pre-img">
+    <img src="photos/venki104.jpeg" class="pre-img">
+    <img src="photos/venki105.jpeg" class="pre-img">
+    <img src="photos/venki106.jpeg" class="pre-img">
+    <img src="photos/venki107.jpeg" class="pre-img">
+    <img src="photos/venki108.jpeg" class="pre-img">
+    <img src="photos/venki109.jpeg" class="pre-img">
+
+  </div>
+</section>
+
+<!-- PRE-WEDDING MODAL -->
+<div id="preModal" class="modal" style="display:none;">
+  <span onclick="closePreModal()" 
+        style="position:absolute;top:20px;right:30px;font-size:35px;cursor:pointer;color:white;">×</span>
+
+  <img id="preModalImg" style="width:90%;max-width:700px;display:block;margin:auto;margin-top:60px;border-radius:10px;">
+</div>
+
+
+<!-- 📍 WEDDING LOCATION -->
  <section class="container text-center my-5">
 
-  <h2 class="mb-4">Venue Details</h2>
+  <section class="container text-center my-5">
 
-  <div class="row g-4">
+  <h2 class="mb-3">💍 Wedding Ceremony</h2>
 
-    <!-- 💍 WEDDING -->
-    <div class="col-md-6">
-      <div class="venue-card wedding">
-        <div class="overlay">
-          <h4>💍 Wedding Ceremony</h4>
-          <p>Join us for the sacred rituals</p>
+  <div class="venue-card wedding mx-auto">
+    <div class="overlay">
 
-          <a href="https://www.google.com/maps/place/Seetharamayya+Kalyana+Mantapa/@13.2614379,76.4677003,17z/data=!3m1!4b1!4m6!3m5!1s0x3bb000b0673de059:0x1d539723148a1547!8m2!3d13.2614379!4d76.4702752!16s%2Fg%2F11bxdb2q0w?entry=ttu&g_ep=EgoyMDI2MDMxOC4xIKXMDSoASAFQAw%3D%3D
-"
-             target="_blank"
-             class="btn btn-gold">
-             View Location
-          </a>
-        </div>
-      </div>
+     <p>📅 Reception<br>
+<b>13-05-2026 | Evening 7:30 PM onwards</b></p>
+
+<p>📅 Muhurtha<br>
+<b>14-05-2026 | 10:45 AM – 11:15 AM </p>
+
+<p>📍 Place<br>
+<b>Seetharaama Kalyana Mantapa, Tiptur</b></p>
+
+      <a href="https://www.google.com/maps/place/Seetharamayya+Kalyana+Mantapa/@13.2614379,76.4677003,17z/data=!3m1!4b1!4m6!3m5!1s0x3bb000b0673de059:0x1d539723148a1547!8m2!3d13.2614379!4d76.4702752!16s%2Fg%2F11bxdb2q0w?entry=ttu&g_ep=EgoyMDI2MDMxOC4xIKXMDSoASAFQAw%3D%3D"
+         target="_blank"
+         class="btn btn-gold">
+         View Location
+      </a>
+
     </div>
-
-    <!-- 🍽️ FEAST -->
-    <div class="col-md-6">
-      <div class="venue-card feast">
-        <div class="overlay">
-          <h4>🍽️ Wedding Feast (Bheegara Oota)</h4>
-          <p>Lunch will be served after the ceremony</p>
-
-          <a href="https://www.google.com/maps/place/Shree+Theertha+Rameshwara+Temple+Entrance+%7C%7C+Theertharampura+Punyakshetra/@14.1830391,75.4878035,17z/data=!3m1!4b1!4m6!3m5!1s0x3bbbb96c13b06d7b:0x6269b440ba1998d!8m2!3d14.1830391!4d75.4903784!16s%2Fg%2F11td9jcztt?entry=ttu&g_ep=EgoyMDI2MDMxOC4xIKXMDSoASAFQAw%3D%3D"
-             target="_blank"
-             class="btn btn-gold">
-             View Location
-          </a>
-        </div>
-      </div>
-    </div>
-
   </div>
 
 </section>
 
 
-<!-- <...Sending Wishes....> -->
-<div class="text-center my-5">
-  <h4 class="mb-4">Send your wishes 💖</h4>
+<!-- 📍 WEDDING FEAST BELAGUTTI LOCATION -->
+<section class="container text-center my-5">
 
-  <div class="wish-buttons">
-
-    <button onclick="sendWishGroom()" class="btn modern-btn">
-      💙 Wish Venkatesh
-    </button>
-
-    <button onclick="sendWishBride()" class="btn modern-btn">
-      💖 Wish Kavya
-    </button>
-
-  </div>
-</div>
-
-
-<!-- Whatsapp -->
- <!-- <a href="#" onclick="sendWish()" class="whatsapp-btn">
-    <img src="whatsapp.svg" width="40px">
+  <h2 class="mb-3">🍽️ Wedding Feast</h2>
   
-</a> -->
+
+  <div class="venue-card feast mx-auto">
+    <div class="overlay">
+
+      <p>📅 Date<br>
+<b>17-05-2026 (Sunday)</b> </p>
+
+<p>📍 Place<br>
+<b>Shree Thirtharameshwara Kalyana Mantapa, Belagutti</b></p>
+
+      <a href="https://www.google.com/maps/place/Shree+Theertha+Rameshwara+Temple+Entrance+%7C%7C+Theertharampura+Punyakshetra/@14.1830391,75.4878035,17z/data=!3m1!4b1!4m6!3m5!1s0x3bbbb96c13b06d7b:0x6269b440ba1998d!8m2!3d14.1830391!4d75.4903784!16s%2Fg%2F11td9jcztt?entry=ttu&g_ep=EgoyMDI2MDMxOC4xIKXMDSoASAFQAw%3D%3D"
+         target="_blank"
+         class="btn btn-gold">
+         View Location
+      </a>
+
+    </div>
+  </div>
+
+</section>
+
+    
+
+<!-- 🔻 FOOTER -->
+<footer class="footer text-center">
+  <p>
+    Designed & Developed by 
+    <a href="https://webcraftstudioin.github.io/webcraftstudioportfolio.in/" target="_blank">Shashanka</a>
+  </p>
+</footer>
 
 
 </div>
-
-
 
 <script src="script.js"></script>
 </body>
@@ -205,6 +229,11 @@ body {
   background: radial-gradient(circle at center, #1a1a1a, #000);
 }
 
+.entry-screen {
+  margin: 0 !important;
+  padding: 20px;
+}
+
 /* CENTER BOX */
 .entry-box {
   text-align: center;
@@ -244,6 +273,16 @@ body {
   transform: scale(1.05);
 }
 
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 35px;
+  color: white;
+  cursor: pointer;
+  z-index: 10000;
+}
+
 /* FADE ANIMATION */
 @keyframes fadeIn {
   from {
@@ -258,14 +297,14 @@ body {
 
 /* HERO */
 .hero {
-  min-height: 100vh;
+  min-height: 90vh;
   display: flex;
   align-items: center;
   text-align: center;
   padding: 40px 20px;
 
   background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)),
-  url('https://images.unsplash.com/photo-1519741497674-611481863552') center/cover no-repeat;
+url('photos/venki105.jpeg') center/cover no-repeat;
 }
 
 /* TYPOGRAPHY */
@@ -337,8 +376,13 @@ h1, h2, h3 {
 }
 
 section {
-  margin-top: 80px;
-  margin-bottom: 80px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+/* Remove extra space for HERO */
+.hero {
+  margin: 0 !important;
 }
 
 /* HOVER EFFECT */
@@ -402,6 +446,35 @@ text-shadow: #0b0b0b;
     height: 220px;
   }
 }
+
+@media (max-width: 576px) {
+
+  section {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .entry-screen {
+    padding: 15px;
+  }
+
+  .entry-box {
+    width: 100%;
+    max-width: 300px;
+    margin: auto;
+  }
+
+  .hero {
+    min-height: 85vh;
+  }
+
+}
+
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
 
 /* WHATSAPP BUTTON */
 .whatsapp-btn {
@@ -477,6 +550,166 @@ text-shadow: #0b0b0b;
   .row .col-md-4 {
     width: 33.33%;
   }
+}
+
+/* FOOTER */
+.footer {
+  padding: 18px 10px;
+  background: #000;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+  position: relative;
+  width: 100%;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 13px;
+  opacity: 0.8;
+  letter-spacing: 0.5px;
+}
+
+.footer a {
+  color: gold;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer a:hover {
+  text-shadow: 0 0 10px gold;
+}
+
+/* Fix for bottom spacing issue */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#invitation {
+  flex: 1;
+}
+
+@media (max-width: 576px) {
+
+  .invite-title {
+    font-size: 1.8rem;
+  }
+
+  .invite-sub {
+    font-size: 14px;
+  }
+
+  .open-btn {
+    width: 100%;
+  }
+
+  input#guestName {
+    font-size: 14px;
+  }
+
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero h4 {
+    font-size: 1rem;
+  }
+
+  #timer div {
+    min-width: 60px;
+    font-size: 12px;
+  }
+
+  .overlay h4 {
+    font-size: 16px;
+  }
+
+  .overlay p {
+    font-size: 13px;
+  }
+}
+
+.overlay p {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.footer {
+  padding: 15px;
+  background: #000;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.footer a {
+  color: gold;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer a:hover {
+  text-shadow: 0 0 8px gold;
+}
+
+@media (max-width: 576px) {
+  .footer {
+    font-size: 12px;
+    padding: 12px;
+  }
+}
+
+.pre-gallery {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding: 10px;
+  scroll-snap-type: x mandatory;
+}
+
+.pre-gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.pre-img {
+  height: 250px;
+  border-radius: 15px;
+  cursor: pointer;
+  scroll-snap-align: center;
+  transition: 0.3s;
+}
+
+.pre-img:hover {
+  transform: scale(1.05);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  background: rgba(0,0,0,0.95); /* 🔥 DARK FULL BACKGROUND */
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#modalImg, #preModalImg {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+  object-fit: contain;
 }
 
 
@@ -611,6 +844,39 @@ window.addEventListener("scroll", () => {
     if (top < window.innerHeight - 100) {
       el.classList.add("show");
     }
+  });
+});
+
+const preImages = document.querySelectorAll(".pre-img");
+const preModal = document.getElementById("preModal");
+const preModalImg = document.getElementById("preModalImg");
+
+preImages.forEach(img => {
+  img.addEventListener("click", () => {
+    preModal.style.display = "block";
+    preModalImg.src = img.src;
+  });
+});
+
+function closePreModal() {
+  preModal.style.display = "none";
+}
+
+function openModal(src) {
+  modal.style.display = "flex";
+  modalImg.src = src;
+
+  document.body.style.overflow = "hidden"; // 🚫 stop scroll
+}
+
+function closeModal() {
+  modal.style.display = "none";
+  document.body.style.overflow = "auto"; // ✅ restore scroll
+}
+
+images.forEach(img => {
+  img.addEventListener("click", () => {
+    openModal(img.src);
   });
 });
 
