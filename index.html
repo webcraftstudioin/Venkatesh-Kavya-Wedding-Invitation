@@ -330,6 +330,18 @@ img { max-width: 100%; height: auto; display: block; }
 
 <script>
 const music = document.getElementById("bgMusic");
+let musicStarted = false;
+
+// START MUSIC (mobile-safe)
+function startMusic() {
+  if (musicStarted) return;
+
+  music.play().then(() => {
+    musicStarted = true;
+  }).catch(() => {
+    console.log("Autoplay blocked until user interaction");
+  });
+}
 
 function enterInvitation() {
   const name = document.getElementById("guestName").value;
@@ -339,13 +351,25 @@ function enterInvitation() {
   document.getElementById("invitation").style.display = "block";
   document.getElementById("welcomeText").innerText = "Welcome " + name;
 
-  music.play();
+  // IMPORTANT: trigger after click (safe gesture)
+  startMusic();
 }
 
-// STOP MUSIC ON SCROLL
-window.addEventListener("scroll", () => {
-  music.pause();
-}, { once: true });
+// STOP MUSIC ON FIRST USER SCROLL (mobile safe)
+let scrollStopped = false;
+
+function stopMusicOnScroll() {
+  if (!scrollStopped) {
+    music.pause();
+    scrollStopped = true;
+    window.removeEventListener("scroll", stopMusicOnScroll);
+    window.removeEventListener("touchmove", stopMusicOnScroll);
+  }
+}
+
+// works for desktop + mobile touch scroll
+window.addEventListener("scroll", stopMusicOnScroll, { passive: true });
+window.addEventListener("touchmove", stopMusicOnScroll, { passive: true });
 
 // COUNTDOWN
 const weddingDate = new Date("May 14, 2026 10:45:00").getTime();
