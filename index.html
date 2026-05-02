@@ -79,13 +79,14 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ================= HERO ================= */
 .hero {
-  min-height: 90vh;
+  min-height: 75vh; /* reduced from 90vh */
   display: flex;
   align-items: center;
   text-align: center;
   padding: 40px 20px;
   background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('photos/venki105.jpeg') center/cover no-repeat;
   margin: 0 !important;
+  position: relative;
 }
 
 .couple {
@@ -220,6 +221,32 @@ img { max-width: 100%; height: auto; display: block; }
   text-align: center;
 }
 
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40px;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  user-select: none;
+  opacity: 0.8;
+  transition: 0.3s;
+}
+
+.nav-btn:hover {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.2);
+}
+
+.nav-btn.left {
+  left: 20px;
+}
+
+.nav-btn.right {
+  right: 20px;
+}
+
 /* ================= FOOTER ================= */
 .footer {
   padding: 15px;
@@ -234,6 +261,13 @@ img { max-width: 100%; height: auto; display: block; }
 @media (max-width: 576px) {
   .couple { font-size: 2rem; }
 }
+
+@media (max-width: 576px) {
+  .hero {
+    min-height: 65vh;
+  }
+}
+
 </style>
 </head>
 
@@ -265,6 +299,10 @@ img { max-width: 100%; height: auto; display: block; }
   </div>
 </section>
 
+<!-- <p style="opacity:0.6; font-size:14px; margin-top:20px;">
+  ↓ Scroll to view more
+</p> -->
+
 <section class="text-center">
   <h2>Wedding Countdown</h2>
   <div id="timer"></div>
@@ -288,6 +326,12 @@ img { max-width: 100%; height: auto; display: block; }
     <img src="photos/venki103.jpeg" class="pre-img">
     <img src="photos/venki104.jpeg" class="pre-img">
     <img src="photos/venki105.jpeg" class="pre-img">
+    <img src="photos/venki106.jpeg" class="pre-img">
+    <img src="photos/venki107.jpeg" class="pre-img">
+    <img src="photos/venki108.jpeg" class="pre-img">
+    <img src="photos/venki109.jpeg" class="pre-img">
+    <img src="photos/venki110.jpeg" class="pre-img">
+
   </div>
 </section>
 
@@ -325,7 +369,15 @@ img { max-width: 100%; height: auto; display: block; }
 <!-- IMAGE MODAL -->
 <div id="imgModal" class="modal">
   <span class="close-btn" onclick="closeModal()">×</span>
+
+  <!-- LEFT BUTTON -->
+  <span class="nav-btn left" onclick="prevImage()">❮</span>
+
+  <!-- IMAGE -->
   <img id="modalImg">
+
+  <!-- RIGHT BUTTON -->
+  <span class="nav-btn right" onclick="nextImage()">❯</span>
 </div>
 
 <script>
@@ -390,23 +442,49 @@ const preImages = document.querySelectorAll(".pre-img");
 const modal = document.getElementById("imgModal");
 const modalImg = document.getElementById("modalImg");
 
-preImages.forEach(img => {
+let currentIndex = 0;
+
+// OPEN IMAGE
+preImages.forEach((img, index) => {
   img.addEventListener("click", () => {
+    currentIndex = index;
+    showImage();
     modal.style.display = "flex";
-    modalImg.src = img.src;
     document.body.style.overflow = "hidden";
   });
 });
 
+// SHOW IMAGE
+function showImage() {
+  modalImg.src = preImages[currentIndex].src;
+}
+
+// NEXT
+function nextImage() {
+  currentIndex = (currentIndex + 1) % preImages.length;
+  showImage();
+}
+
+// PREVIOUS
+function prevImage() {
+  currentIndex = (currentIndex - 1 + preImages.length) % preImages.length;
+  showImage();
+}
+
+// CLOSE
 function closeModal() {
   modal.style.display = "none";
   document.body.style.overflow = "auto";
 }
 
-// close when clicking outside image
+// CLICK OUTSIDE CLOSE
 modal.addEventListener("click", (e) => {
   if (e.target === modal) closeModal();
 });
+
+
+
+
 </script>
 
 </body>
