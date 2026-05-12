@@ -426,16 +426,29 @@ window.addEventListener("touchmove", stopMusicOnScroll, { passive: true });
 // COUNTDOWN
 const weddingDate = new Date("May 14, 2026 10:45:00").getTime();
 
-setInterval(() => {
+const timer = setInterval(() => {
   const now = new Date().getTime();
   const gap = weddingDate - now;
 
+  // If wedding date is over
+  if (gap <= 0) {
+    clearInterval(timer);
+
+    document.getElementById("timer").innerHTML = `
+      <div>00<br>Days</div>
+      <div>00<br>Hrs</div>
+      <div>00<br>Min</div>
+      <div>00<br>Sec</div>`;
+      
+    return;
+  }
+
   document.getElementById("timer").innerHTML = `
-    <div>${Math.floor(gap/86400000)}<br>Days</div>
-    <div>${Math.floor((gap/3600000)%24)}<br>Hrs</div>
-    <div>${Math.floor((gap/60000)%60)}<br>Min</div>
-    <div>${Math.floor((gap/1000)%60)}<br>Sec</div>`;
-},1000);
+    <div>${Math.floor(gap / 86400000)}<br>Days</div>
+    <div>${Math.floor((gap / 3600000) % 24)}<br>Hrs</div>
+    <div>${Math.floor((gap / 60000) % 60)}<br>Min</div>
+    <div>${Math.floor((gap / 1000) % 60)}<br>Sec</div>`;
+}, 1000);
 
 // IMAGE MODAL (PRE WEDDING FULL VIEW)
 const preImages = document.querySelectorAll(".pre-img");
